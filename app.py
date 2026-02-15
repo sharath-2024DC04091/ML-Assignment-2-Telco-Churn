@@ -12,8 +12,17 @@ import seaborn as sns
 # -------------------------------
 st.set_page_config(page_title="Telco Churn Prediction", layout="wide")
 
-st.title("📊 Telco Customer Churn Prediction")
+st.title("Telco Customer Churn Prediction")
 st.write("Machine Learning Models for Predicting Customer Churn")
+
+# -------------------------------
+# Download Sample Test File
+# -------------------------------
+st.markdown("### Download Sample Test File")
+st.markdown(
+    "[Click here to download test_data.csv](https://raw.githubusercontent.com/sharath-2024DC04091/ML-Assignment-2-Telco-Churn/main/test_data.csv)"
+)
+
 
 # -------------------------------
 # Load Models
@@ -117,12 +126,29 @@ if uploaded_file is not None:
     # Confusion Matrix
     # -------------------------------
     st.subheader("Confusion Matrix")
-
+    
     cm = confusion_matrix(y, y_pred)
-
-    fig, ax = plt.subplots()
-    sns.heatmap(cm, annot=True, fmt="d", cmap="Blues", ax=ax)
+    
+    fig, ax = plt.subplots(figsize=(5, 4))
+    sns.heatmap(
+        cm,
+        annot=True,
+        fmt="d",
+        cmap="Blues",
+        xticklabels=["No Churn", "Churn"],
+        yticklabels=["No Churn", "Churn"],
+        ax=ax
+    )
+    
     ax.set_xlabel("Predicted")
     ax.set_ylabel("Actual")
+    
     st.pyplot(fig)
+
+
+# -------------------------------
+# Footer
+# -------------------------------
+st.markdown("---")
+st.markdown("Developed by Sharath Sabu | BITS Pilani WILP")
 
